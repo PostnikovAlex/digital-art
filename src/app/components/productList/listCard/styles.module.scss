@@ -1,0 +1,43 @@
+.card {
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  span {
+    margin-bottom: 8px;
+  }
+  &__img {
+    height: 290px;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+  }
+  &__button {
+    margin-bottom: 8px;
+    button {
+      width: 100%;
+      height: 46px;
+      font-size: var(--font-size-subheading);
+      line-height: var(--line-height-s);
+    }
+  }
+
+  &__category {
+    line-height: var(--line-height-s);
+    font-size: var(--font-size-subheading);
+    color: var(--font-color-light);
+    font-weight: 600;
+  }
+  &__name {
+    line-height: var(--line-height-l);
+    font-size: var(--font-size-heading);
+    font-weight: 700;
+  }
+  &__price {
+    line-height: var(--line-height-m);
+    font-size: 22px;
+    color: var(--font-color-light);
+    font-weight: 400;
+  }
+}

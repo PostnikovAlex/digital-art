@@ -1,0 +1,27 @@
+.listHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  &__title {
+    display: flex;
+    align-items: center;
+    color: var(--font-color-light);
+    line-height: var(--line-height-l);
+    font-size: var(--font-size-heading);
+    h3 {
+      color: black;
+    }
+  }
+}
+
+.products {
+  display: flex;
+  &__filters {
+    flex-basis: 30%;
+    margin-right: 50px;
+  }
+  &__list {
+    flex-basis: 70%;
+  }
+}
