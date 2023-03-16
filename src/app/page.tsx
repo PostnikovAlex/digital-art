@@ -1,10 +1,10 @@
 "use client";
 import styles from "./page.module.scss";
-
+import useCart from "./hooks/useCart";
 import { useEffect, useState } from "react";
-import { collection, getDoc, query, doc, setDoc } from "@firebase/firestore";
+import { collection, getDoc, doc } from "@firebase/firestore";
 import { database } from "../firebase";
-import { getDatabase, ref, set } from "firebase/database";
+
 import Header from "@/app/components/header/Header";
 import Banner from "@/app/components/banner/Bannder";
 import DescriptionBlock from "@/app/components/description-block/DescriptionBlock";
@@ -23,10 +23,15 @@ export interface Iproduct {
   bestseller: boolean;
   featured: boolean;
   details?: any;
+  id: string;
 }
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const { items, addToCart, emptyCart, amountInCart } = useCart([]);
+  const handleAddToCart = (product) => {
+    addToCart(product);
+  };
   const productsRef = doc(
     collection(database, "products"),
     "a7eOUWu8xyEIcQ7f1w9c"
@@ -41,13 +46,14 @@ export default function Home() {
         console.error("Error retrieving product: ", error);
       });
   };
-
   useEffect(() => {
     getProducts();
   }, []);
+  useEffect(() => console.log(items), [items]);
   return (
     <main className={styles.main}>
-      <Header></Header>
+      <h1>{amountInCart}</h1>
+      <Header amountInCart={amountInCart}></Header>
       <Banner title="Samurai King Resting">
         <picture>
           <source
@@ -67,7 +73,10 @@ export default function Home() {
         </picture>
       </Banner>
       <DescriptionBlock></DescriptionBlock>
-      <ProductList products={products}></ProductList>
+      <ProductList
+        handleAddToCart={handleAddToCart}
+        products={products}
+      ></ProductList>
     </main>
   );
 }

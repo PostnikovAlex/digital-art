@@ -5,4 +5,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
+  &__cart {
+    cursor: pointer;
+    &__amount {
+      width: 10px;
+      height: 10px;
+      background: red;
+    }
+  }
 }

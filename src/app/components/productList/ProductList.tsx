@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Filters from "@/app/components/filters/Filters";
 import List from "@/app/components/productList/list/List";
@@ -6,9 +6,10 @@ import { Iproduct } from "@/app/page";
 import ListCard from "./listCard/ListCard";
 type Props = {
   products: Array<Iproduct>;
+  handleAddToCart: any;
 };
 
-const ProductList: FC<Props> = ({ products }) => {
+const ProductList: FC<Props> = ({ products, handleAddToCart }) => {
   return (
     <section>
       <div className={styles.listHeader}>
@@ -31,8 +32,13 @@ const ProductList: FC<Props> = ({ products }) => {
           <List>
             {products &&
               products.map((product) => {
-                // return <span key={product.name}>{product.name}</span>;
-                return <ListCard key={product.name} data={product}></ListCard>;
+                return (
+                  <ListCard
+                    handleAddToCart={handleAddToCart}
+                    key={product.id}
+                    data={product}
+                  ></ListCard>
+                );
               })}
           </List>
         </div>

@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-function Header() {
+type Tprops = {
+  amountInCart: number;
+};
+
+function Header({ amountInCart }: Tprops) {
   return (
     <header className={styles.header}>
       <div className={styles.header__logo}>
@@ -48,6 +52,9 @@ function Header() {
       </div>
 
       <div className={styles.header__cart}>
+        {amountInCart ? (
+          <span className={styles.header__cart__amount}></span>
+        ) : null}
         <svg
           width="54"
           height="54"
